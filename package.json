@@ -4,5 +4,8 @@
   },
   "scripts": {
     "prettierall": "npx prettier --write ."
+  },
+  "dependencies": {
+    "react-router-dom": "^6.8.1"
   }
 }
