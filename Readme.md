@@ -26,8 +26,8 @@ A realtime chat app using react. You can create groups, add your friends and cha
 
 #### To Run Storybook:-
 
-- npm run storybook or yarn storybook
+- yarn storybook or npm run storybook
 
 #### To Format the code:-
 
-- npm run prettierall or yarn prettierall
+- yarn prettierall or npm run prettierall
