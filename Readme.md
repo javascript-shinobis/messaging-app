@@ -30,4 +30,4 @@ A realtime chat app using react. You can create groups, add your friends and cha
 
 #### To Format the code:-
 
-- npm run prettierall
+- npm run prettierall or yarn prettierall
