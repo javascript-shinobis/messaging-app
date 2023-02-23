@@ -18,16 +18,16 @@ A realtime chat app using react. You can create groups, add your friends and cha
 
 #### To Run React app:-
 
-- npm start
+- `cd client && npm start`
 
 #### To Run the Server:-
 
-- npm run dev
+- `cd client && npm run dev`
 
 #### To Run Storybook:-
 
-- yarn storybook or npm run storybook
+- `cd client && yarn storybook or npm run storybook`
 
 #### To Format the code:-
 
-- yarn prettierall or npm run prettierall
+- `cd client && yarn prettierall or npm run prettierall`
