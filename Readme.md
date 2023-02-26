@@ -22,7 +22,7 @@ A realtime chat app using react. You can create groups, add your friends and cha
 
 #### To Run the Server:-
 
-- `cd client && npm run dev`
+- `cd server && npm run dev`
 
 #### To Run Storybook:-
 
