@@ -1,8 +1,10 @@
 {
   "devDependencies": {
+    "husky": "^8.0.3",
     "prettier": "2.8.3"
   },
   "scripts": {
-    "prettierall": "npx prettier --write ."
+    "prettierall": "npx prettier --write .",
+    "prepare": "husky install"
   }
 }
