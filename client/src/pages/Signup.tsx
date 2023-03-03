@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
-import { Card } from "../components/Card";
-import Input from "../components/Input";
+
+import { Card } from "components/Card";
+import Input from "components/Input";
 
 const Signup = () => {
   const usernameRef = useRef<HTMLInputElement>(null)
