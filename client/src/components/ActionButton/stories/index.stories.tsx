@@ -24,7 +24,6 @@ Submit.args = {
 };
 
 export const Check = Template.bind({});
-
 Check.args = {
   label: "Check",
   bgColor: "red",
