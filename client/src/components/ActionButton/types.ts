@@ -1,5 +1,11 @@
 export interface ActionButtonProps {
   bgColor: string;
-  title: string;
+  label: string;
+  labelColor: string;
   onClick: Function;
+}
+
+export interface StyledButtonProps {
+  bg: string;
+  labelcolor: string;
 }
