@@ -18,5 +18,5 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     },
   });
 
-  return <Context.Provider value={{}}>{children}</Context.Provider>;
+  return <Context.Provider value={{ signup }}>{children}</Context.Provider>;
 };
