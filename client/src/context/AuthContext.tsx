@@ -17,4 +17,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return axios.post(`${import.meta.env.VITE_SERVER_URL}/signup`, user);
     },
   });
+
+  return <Context.Provider value={{}}>{children}</Context.Provider>;
 };
