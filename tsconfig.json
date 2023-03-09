@@ -16,14 +16,20 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
-   "paths": {
-  "@/*": ["./client/src/*", "./dist/*"],
-  "#/*":["./server/*"],
-  "pages/*": ["client/src/pages/*"],
-  "components/*": ["client/src/components/*"],
-  "public/*": ["client/public/*"]
-}
+    "paths": {
+      "@/*": ["./client/src/*", "./dist/*"],
+      "#/*": ["./server/*"],
+      "pages/*": ["client/src/pages/*"],
+      "components/*": ["client/src/components/*"],
+      "public/*": ["client/public/*"],
+      "routes/*": ["./server/routes/*"]
+    }
   },
   "include": ["src", "client", "server"],
-  "references": [{ "path": "./client/tsconfig.node.json" }]
+  "references": [{ "path": "./client/tsconfig.node.json" }],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
