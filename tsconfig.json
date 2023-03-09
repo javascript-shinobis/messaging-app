@@ -22,7 +22,6 @@
       "pages/*": ["client/src/pages/*"],
       "components/*": ["client/src/components/*"],
       "public/*": ["client/public/*"],
-      "routes/*": ["./server/routes/*"]
     }
   },
   "include": ["src", "client", "server"],
