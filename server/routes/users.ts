@@ -14,6 +14,15 @@ export async function userRoutes(app: FastifyInstance) {
       if (id == null || id === "" || name == null || name === "") {
         return res.status(400).send();
       }
+
+      //queryUser() allows us to query about our users
+      const existingUsers = await streamChat.queryUsers({id})
+      if(existingUsers.users.length > 0) {
+        return res.status(400).send("User Id is taken.")
+      }
+
+      // For creating or updating user we use upsertUser
+      await streamChat.upsertUser({id, name, image})
     }
   );
 }
