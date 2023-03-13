@@ -20,6 +20,7 @@
       "@/*": ["./src/*", "./dist/*", ""],
       "server/*": ["../server/*"],
       "pages/*": ["src/pages/*"],
+      "utils/*": ["utils/*"],
       "components/*": ["src/components/*"],
       "public/*": ["public/*"]
     }
