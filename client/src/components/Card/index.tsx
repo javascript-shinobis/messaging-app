@@ -9,7 +9,7 @@ import { CardProps } from "./types";
  */
 export const Card = ({ children }: CardProps) => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 border-slate-300">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="max-w-md w-full">{children}</div>
     </div>
   );
