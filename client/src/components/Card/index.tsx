@@ -22,7 +22,7 @@ Card.Header = ({ children }: CardProps) => (
 );
 
 Card.Body = ({ children }: CardProps) => (
-  <div className="shadow bg-white p-6 rounded-lg">{children}</div>
+  <div className="shadow bg-white p-6 rounded-lg w-96 mx-auto">{children}</div>
 );
 
 Card.Footer = ({ children }: CardProps) => (
