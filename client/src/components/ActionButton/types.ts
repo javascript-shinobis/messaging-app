@@ -5,7 +5,8 @@ export interface ActionButtonProps {
   label: string;
   labelColor: string;
   loading: boolean;
-  onClick: (event: MouseEvent) => void;
+  type: "submit" | "reset" | "button"; 
+  // onClick: (event: MouseEvent) => void;
 }
 
 export interface StyledButtonProps {
