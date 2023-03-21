@@ -1,12 +1,12 @@
 import React, { MouseEvent } from "react";
 
 export interface ActionButtonProps {
-  bgColor: string;
+  bgColor?: string;
   label: string;
-  labelColor: string;
-  loading: boolean;
+  labelColor?: string;
+  loading?: boolean;
   type: "submit" | "reset" | "button";
-  // onClick: (event: MouseEvent) => void;
+  onClick?: (event: MouseEvent) => void;
 }
 
 export interface StyledButtonProps {

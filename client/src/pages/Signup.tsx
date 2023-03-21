@@ -2,7 +2,7 @@ import React, { FormEvent, useRef, useState } from "react";
 
 import { Card } from "components/Card";
 import Input from "components/Input";
-import ActionButton from "@/components/ActionButton";
+import ActionButton from "components/ActionButton";
 
 const Signup = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -43,13 +43,11 @@ const Signup = () => {
           <label htmlFor="image" className="block text-gray-700 font-bold">
             Image URL
           </label>
-          <Input type="text" id="image" pattern="\S*" required ref={imageRef} />
+          <Input type="url" id="image" pattern="\S*" required ref={imageRef} />
           <ActionButton
             label="Sign up"
             type="submit"
             loading={loading}
-            bgColor="green"
-            labelColor="red"
           />
         </form>
       </Card.Body>
