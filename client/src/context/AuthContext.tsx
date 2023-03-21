@@ -13,7 +13,7 @@ const SignupMethod = () =>
     },
   });
 
-export const useAuth = () => useContext(Context) as AuthContext
+export const useAuth = () => useContext(Context) as AuthContext;
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signup = SignupMethod();
