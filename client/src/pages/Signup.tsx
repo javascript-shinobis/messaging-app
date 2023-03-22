@@ -26,7 +26,7 @@ const Signup = () => {
     const name = nameRef.current?.value;
     const imageUrl = imageRef.current?.value;
 
-    if (userName == null || userName === "" || name == null || name === "") {
+    if (!userName || userName === "" || !name || name === "") {
       return;
     }
 
