@@ -2,7 +2,7 @@ import React, {
   DetailedHTMLProps,
   forwardRef,
   InputHTMLAttributes,
-} from "react";
+} from 'react';
 
 const Input = forwardRef<
   HTMLInputElement,

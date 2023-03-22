@@ -1,11 +1,11 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent } from 'react';
 
 export interface ActionButtonProps {
   bgColor?: string;
   label: string;
   labelColor?: string;
   loading?: boolean;
-  type: "submit" | "reset" | "button";
+  type: 'submit' | 'reset' | 'button';
   disabled?: boolean;
   onClick?: (event: MouseEvent) => void;
 }

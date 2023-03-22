@@ -1,11 +1,12 @@
-import React, { FormEvent, useRef } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import React, { FormEvent, useRef } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
-import { Card } from "components/Card";
-import Input from "components/Input";
-import ActionButton from "components/ActionButton";
-import { useAuth } from "context/AuthContext";
+import { Card } from 'components/Card';
+import Input from 'components/Input';
+import ActionButton from 'components/ActionButton';
 
+
+import { useAuth } from 'context/AuthContext';
 
 const Signup = () => {
   const { signup, isSuccess } = useAuth();
@@ -25,8 +26,8 @@ const Signup = () => {
     const name = nameRef.current?.value;
     const imageUrl = imageRef.current?.value;
 
-    if (!userName || userName === "" || !name || name === "") {
-      toast.error("Please input a correct username");
+    if (!userName || userName === '' || !name || name === '') {
+      toast.error('Please input a correct username');
       return;
     }
 
@@ -65,7 +66,7 @@ const Signup = () => {
           </label>
           <Input type="url" id="image" pattern="\S*" ref={imageRef} />
           <ActionButton
-            label={signup.isLoading ? "Loading..." : "Sign up"}
+            label={signup.isLoading ? 'Loading...' : 'Sign up'}
             type="submit"
             disabled={signup.isLoading}
           />

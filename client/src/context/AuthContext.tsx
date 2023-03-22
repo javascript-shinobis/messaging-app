@@ -1,11 +1,11 @@
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { createContext } from "react";
-import { useContext } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { createContext } from 'react';
+import { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
-import { AuthContext, AuthProviderProps, User } from "./types";
+import { AuthContext, AuthProviderProps, User } from './types';
 
 const Context = createContext<AuthContext | null>(null);
 const SignupMethod = (navigation: (a: string) => void) =>
@@ -15,13 +15,13 @@ const SignupMethod = (navigation: (a: string) => void) =>
     },
     onSuccess: () => {
       toast.success(
-        "User has been created successfully. Please login to continue...!",
+        'User has been created successfully. Please login to continue...!',
         {
           duration: 3000,
         }
       );
       setTimeout(() => {
-        navigation("/login");
+        navigation('/login');
       }, 2000);
     },
   });

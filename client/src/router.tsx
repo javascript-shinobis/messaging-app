@@ -1,9 +1,9 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 
-import { AuthProvider } from "./context/AuthContext";
-import Authlayout from "./pages/layouts/Authlayout";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import { AuthProvider } from './context/AuthContext';
+import Authlayout from './pages/layouts/Authlayout';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 export const router = createBrowserRouter([
   {
@@ -13,8 +13,8 @@ export const router = createBrowserRouter([
         element: <Authlayout />,
 
         children: [
-          { path: "login", element: <Login /> },
-          { path: "signup", element: <Signup /> },
+          { path: 'login', element: <Login /> },
+          { path: 'signup', element: <Signup /> },
         ],
       },
     ],

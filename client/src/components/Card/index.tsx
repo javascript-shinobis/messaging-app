@@ -1,4 +1,4 @@
-import { CardProps } from "./types";
+import { CardProps } from './types';
 
 /**
  * @date 2023-02-21
