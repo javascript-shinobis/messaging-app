@@ -1,24 +1,23 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useRef } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import { Card } from "components/Card";
 import Input from "components/Input";
 import ActionButton from "components/ActionButton";
 import { useAuth } from "context/AuthContext";
 
+
 const Signup = () => {
-  const { signup } = useAuth();
+  const { signup, isSuccess } = useAuth();
 
   const usernameRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
 
-  const [loading, setLoading] = useState(false);
-
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
 
     if (signup.isLoading) {
-      setLoading(true);
       return;
     }
 
@@ -27,14 +26,18 @@ const Signup = () => {
     const imageUrl = imageRef.current?.value;
 
     if (!userName || userName === "" || !name || name === "") {
+      toast.error("Please input a correct username");
       return;
     }
 
     signup.mutate({ id: userName, name, image: imageUrl });
+
+    console.log(signup);
   };
 
   return (
-    <>
+    <React.Fragment>
+      <Toaster />
       <Card.Header>
         <h1 className="text-3xl font-bold mb-2 text-center">Sign Up</h1>
       </Card.Header>
@@ -49,7 +52,7 @@ const Signup = () => {
           <Input
             type="text"
             id="username"
-            pattern="\S*"
+            // pattern="\S*"
             required
             ref={usernameRef}
           />
@@ -62,14 +65,13 @@ const Signup = () => {
           </label>
           <Input type="url" id="image" pattern="\S*" ref={imageRef} />
           <ActionButton
-            label={loading ? "Loading..." : "Sign up"}
+            label={signup.isLoading ? "Loading..." : "Sign up"}
             type="submit"
-            loading={loading}
-            disabled={loading}
+            disabled={signup.isLoading}
           />
         </form>
       </Card.Body>
-    </>
+    </React.Fragment>
   );
 };
 
