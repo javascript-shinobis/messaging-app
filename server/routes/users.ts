@@ -37,7 +37,7 @@ export async function userRoutes(app: FastifyInstance) {
       if (id == null || id === "") {
         return res
           .status(400)
-          .send({ errorMessage: `Please pass valid user signup parameters!` });
+          .send({ errorMessage: `Please provde a valid user login credential!!` });
       }
 
       const {users: [user]} = await streamChat.queryUsers({id})
