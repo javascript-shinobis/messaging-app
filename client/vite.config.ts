@@ -13,6 +13,7 @@ export default defineConfig({
       public: `${path.resolve(__dirname, "./public/")}`,
       pages: `${path.resolve(__dirname, "./src/pages/")}`,
       server: `${path.resolve(__dirname, "../server/")}`,
+      context: `${path.resolve(__dirname, "./src/context/")}`,
     },
   },
 });

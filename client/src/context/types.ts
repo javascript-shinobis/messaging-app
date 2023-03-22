@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 
 export type AuthContext = {
   signup: UseMutationResult<AxiosResponse, unknown, User>;
+  isSuccess: boolean;
 };
 
 export type AuthProviderProps = {

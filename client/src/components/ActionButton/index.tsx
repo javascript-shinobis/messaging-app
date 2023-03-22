@@ -1,6 +1,12 @@
 import { ActionButtonProps } from "./types";
 
-const ActionButton = ({ label, type, loading }: ActionButtonProps) => {
+const ActionButton = ({
+  label,
+  type,
+  loading,
+  onClick,
+  disabled,
+}: ActionButtonProps) => {
   return (
     <>
       <button
@@ -8,6 +14,7 @@ const ActionButton = ({ label, type, loading }: ActionButtonProps) => {
           loading && "loading"
         }`}
         type={type}
+        disabled={disabled}
       >
         {label}
       </button>
