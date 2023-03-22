@@ -6,9 +6,8 @@ import Input from "components/Input";
 import ActionButton from "components/ActionButton";
 import { useAuth } from "context/AuthContext";
 
-
 const Signup = () => {
-  const { signup, isSuccess } = useAuth();
+  const { signup } = useAuth();
 
   const usernameRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
