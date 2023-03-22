@@ -3,8 +3,13 @@ import React, { FormEvent, useRef, useState } from "react";
 import { Card } from "components/Card";
 import Input from "components/Input";
 import ActionButton from "components/ActionButton";
+import { useAuth } from "context/AuthContext";
 
 const Signup = () => {
+
+  const {signup} = useAuth()
+
+
   const usernameRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
@@ -13,7 +18,21 @@ const Signup = () => {
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    
+    if(signup.isLoading){
+      setLoading(true);
+      return
+    }
+
+    const userName = usernameRef.current?.value
+    const name = nameRef.current?.value
+    const imageUrl = imageRef.current?.value
+
+    if(userName == null || userName === "" || name == null || name === "") {
+      return
+    }
+
+    signup.mutate({id: userName, name, image: imageUrl})
   };
 
   return (
@@ -39,15 +58,16 @@ const Signup = () => {
           <label htmlFor="name" className="block text-gray-700 font-bold">
             Name
           </label>
-          <Input type="text" id="name" pattern="\S*" required ref={nameRef} />
+          <Input type="text" id="name" required ref={nameRef} />
           <label htmlFor="image" className="block text-gray-700 font-bold">
             Image URL
           </label>
-          <Input type="url" id="image" pattern="\S*" required ref={imageRef} />
+          <Input type="url" id="image" pattern="\S*"  ref={imageRef} />
           <ActionButton
-            label="Sign up"
+            label={loading ? "Loading..." : "Sign up"}
             type="submit"
             loading={loading}
+            disabled={loading}
           />
         </form>
       </Card.Body>

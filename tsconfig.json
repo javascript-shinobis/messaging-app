@@ -21,7 +21,8 @@
       "#/*": ["./server/*"],
       "pages/*": ["client/src/pages/*"],
       "components/*": ["client/src/components/*"],
-      "public/*": ["client/public/*"]
+      "public/*": ["client/public/*"],
+      "context": ["client/src/context/*"]
     }
   },
   "include": ["src", "client", "server"],
