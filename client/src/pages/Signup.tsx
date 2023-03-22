@@ -6,9 +6,7 @@ import ActionButton from "components/ActionButton";
 import { useAuth } from "context/AuthContext";
 
 const Signup = () => {
-
-  const {signup} = useAuth()
-
+  const { signup } = useAuth();
 
   const usernameRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -18,21 +16,21 @@ const Signup = () => {
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    
-    if(signup.isLoading){
+
+    if (signup.isLoading) {
       setLoading(true);
-      return
+      return;
     }
 
-    const userName = usernameRef.current?.value
-    const name = nameRef.current?.value
-    const imageUrl = imageRef.current?.value
+    const userName = usernameRef.current?.value;
+    const name = nameRef.current?.value;
+    const imageUrl = imageRef.current?.value;
 
-    if(userName == null || userName === "" || name == null || name === "") {
-      return
+    if (userName == null || userName === "" || name == null || name === "") {
+      return;
     }
 
-    signup.mutate({id: userName, name, image: imageUrl})
+    signup.mutate({ id: userName, name, image: imageUrl });
   };
 
   return (
@@ -62,7 +60,7 @@ const Signup = () => {
           <label htmlFor="image" className="block text-gray-700 font-bold">
             Image URL
           </label>
-          <Input type="url" id="image" pattern="\S*"  ref={imageRef} />
+          <Input type="url" id="image" pattern="\S*" ref={imageRef} />
           <ActionButton
             label={loading ? "Loading..." : "Sign up"}
             type="submit"

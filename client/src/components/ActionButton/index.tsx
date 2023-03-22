@@ -1,6 +1,12 @@
 import { ActionButtonProps } from "./types";
 
-const ActionButton = ({ label, type, loading, onClick, disabled }: ActionButtonProps) => {
+const ActionButton = ({
+  label,
+  type,
+  loading,
+  onClick,
+  disabled,
+}: ActionButtonProps) => {
   return (
     <>
       <button
