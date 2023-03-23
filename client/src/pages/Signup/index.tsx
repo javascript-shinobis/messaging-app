@@ -24,14 +24,12 @@ const Signup = () => {
     const name = nameRef.current?.value;
     const imageUrl = imageRef.current?.value;
 
-    if (!userName || userName === "" || !name || name === "") {
-      toast.error("Please input a correct username");
+    if (!userName || userName === " " || !name || name === " ") {
+      toast.error("Please input a correct signup credentials!");
       return;
     }
 
     signup.mutate({ id: userName, name, image: imageUrl });
-
-    console.log(signup);
   };
 
   return (
@@ -48,13 +46,7 @@ const Signup = () => {
           <label htmlFor="username" className="block text-gray-700 font-bold">
             Username
           </label>
-          <Input
-            type="text"
-            id="username"
-            // pattern="\S*"
-            required
-            ref={usernameRef}
-          />
+          <Input type="text" id="username" required ref={usernameRef} />
           <label htmlFor="name" className="block text-gray-700 font-bold">
             Name
           </label>
