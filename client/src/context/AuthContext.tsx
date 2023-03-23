@@ -27,8 +27,10 @@ const SignupMethod = (navigation: (a: string) => void) =>
 
 const LoginMethod = (navigation: (a: string) => void) =>
   useMutation({
-    mutationFn: (userName: string) => {
-      return axios.post(`${import.meta.env.VITE_SERVER_URL}/login`, userName);
+    mutationFn: (loginUser: string) => {
+      return axios.post(`${import.meta.env.VITE_SERVER_URL}/login`, {
+        id: loginUser,
+      });
     },
     onSuccess: () => {
       toast.success('Login successful...!', {

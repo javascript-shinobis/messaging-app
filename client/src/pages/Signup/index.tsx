@@ -1,13 +1,13 @@
-import React, { FormEvent, useRef } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import React, { FormEvent, useRef } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
-import { Card } from "components/Card";
-import Input from "components/Input";
-import ActionButton from "components/ActionButton";
-import { useAuth } from "context/AuthContext";
+import { Card } from 'components/Card';
+import Input from 'components/Input';
+import ActionButton from 'components/ActionButton';
+import { useAuth } from 'context/AuthContext';
 
-const Signup = () => {
+function Signup() {
   const { signup } = useAuth();
 
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -25,8 +25,8 @@ const Signup = () => {
     const name = nameRef.current?.value;
     const imageUrl = imageRef.current?.value;
 
-    if (!userName || userName === " " || !name || name === " ") {
-      toast.error("Please input a correct signup credentials!");
+    if (!userName || userName === ' ' || !name || name === ' ') {
+      toast.error('Please input a correct signup credentials!');
       return;
     }
 
@@ -34,7 +34,7 @@ const Signup = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Toaster />
       <Card.Header>
         <h1 className="text-3xl font-bold mb-2 text-center">Sign Up</h1>
@@ -44,6 +44,7 @@ const Signup = () => {
           className="grid gris-cols-[auto,1fr] gap-x-3 gap-y-5 items-center justify-items-start"
           onSubmit={submitHandler}
         >
+          {/* eslint-disable jsx-a11y/label-has-associated-control */}
           <label htmlFor="username" className="block text-gray-700 font-bold">
             Username
           </label>
@@ -65,14 +66,14 @@ const Signup = () => {
       </Card.Body>
       <Card.Footer>
         <p className="text-black">
-          Already an existing user?{" "}
+          Already an existing user?{' '}
           <Link to="/login">
             <em className="text-blue-600">Login</em>
           </Link>
         </p>
       </Card.Footer>
-    </React.Fragment>
+    </>
   );
-};
+}
 
 export default Signup;
