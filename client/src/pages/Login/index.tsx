@@ -44,8 +44,8 @@ function Login() {
           {/* eslint-disable jsx-a11y/label-has-associated-control */}
           <label htmlFor="username" className="block text-gray-700 font-bold">
             Username
-            <Input type="text" id="username" required ref={userNameRef} />
           </label>
+          <Input type="text" id="username" required ref={userNameRef} />
 
           <ActionButton loading={loading} label="Login" type="submit" />
         </form>
