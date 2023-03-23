@@ -25,7 +25,7 @@
       "context": ["client/src/context/*"]
     }
   },
-  "include": ["src", "client", "server"],
+  "include": ["src", "client", "server", ".eslintrc.js"],
   "references": [{ "path": "./client/tsconfig.node.json" }],
   "ts-node": {
     "compilerOptions": {
