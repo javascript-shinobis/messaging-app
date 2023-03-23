@@ -49,12 +49,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const { isSuccess } = signup;
   const isValidUser = login.isSuccess;
 
-  // if(isSuccess){
-  //
-  // }
-
-  // console.log(signup)
-
   return (
     <Context.Provider
       value={useMemo(
