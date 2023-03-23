@@ -26,5 +26,7 @@ Card.Body = ({ children }: CardProps) => (
 );
 
 Card.Footer = ({ children }: CardProps) => (
-  <div className="mt-2 justify-center flex gap-3">{children}</div>
+  <div className="mt-2 p-1  bg-white justify-center  rounded-lg flex gap-1 w-96 mx-auto">
+    {children}
+  </div>
 );

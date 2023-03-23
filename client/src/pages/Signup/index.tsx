@@ -1,14 +1,14 @@
 import React, { FormEvent, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 import { Card } from "components/Card";
 import Input from "components/Input";
 import ActionButton from "components/ActionButton";
 import { useAuth } from "context/AuthContext";
 
-
 const Signup = () => {
-  const { signup, isSuccess } = useAuth();
+  const { signup } = useAuth();
 
   const usernameRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -25,14 +25,12 @@ const Signup = () => {
     const name = nameRef.current?.value;
     const imageUrl = imageRef.current?.value;
 
-    if (!userName || userName === "" || !name || name === "") {
-      toast.error("Please input a correct username");
+    if (!userName || userName === " " || !name || name === " ") {
+      toast.error("Please input a correct signup credentials!");
       return;
     }
 
     signup.mutate({ id: userName, name, image: imageUrl });
-
-    console.log(signup);
   };
 
   return (
@@ -49,13 +47,7 @@ const Signup = () => {
           <label htmlFor="username" className="block text-gray-700 font-bold">
             Username
           </label>
-          <Input
-            type="text"
-            id="username"
-            // pattern="\S*"
-            required
-            ref={usernameRef}
-          />
+          <Input type="text" id="username" required ref={usernameRef} />
           <label htmlFor="name" className="block text-gray-700 font-bold">
             Name
           </label>
@@ -65,12 +57,20 @@ const Signup = () => {
           </label>
           <Input type="url" id="image" pattern="\S*" ref={imageRef} />
           <ActionButton
-            label={signup.isLoading ? "Loading..." : "Sign up"}
+            label="Sign up"
             type="submit"
-            disabled={signup.isLoading}
+            loading={signup.isLoading}
           />
         </form>
       </Card.Body>
+      <Card.Footer>
+        <p className="text-black">
+          Already an existing user?{" "}
+          <Link to="/login">
+            <em className="text-blue-600">Login</em>
+          </Link>
+        </p>
+      </Card.Footer>
     </React.Fragment>
   );
 };
