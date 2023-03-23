@@ -57,13 +57,12 @@ const Signup = () => {
           </label>
           <Input type="url" id="image" pattern="\S*" ref={imageRef} />
           <ActionButton
-            label={signup.isLoading ? "Loading..." : "Sign up"}
+            label="Sign up"
             type="submit"
-            disabled={signup.isLoading}
             loading={signup.isLoading}
           />
         </form>
-      </Card.Body>{" "}
+      </Card.Body>
       <Card.Footer>
         <p className="text-black">
           Already an existing user?{" "}
