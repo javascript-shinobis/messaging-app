@@ -60,6 +60,7 @@ const Signup = () => {
             label={signup.isLoading ? "Loading..." : "Sign up"}
             type="submit"
             disabled={signup.isLoading}
+            loading={signup.isLoading}
           />
         </form>
       </Card.Body>{" "}
