@@ -5,6 +5,7 @@ import { Card } from "components/Card";
 import Input from "components/Input";
 import ActionButton from "components/ActionButton";
 import { useAuth } from "context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const { signup } = useAuth();
@@ -61,7 +62,15 @@ const Signup = () => {
             disabled={signup.isLoading}
           />
         </form>
-      </Card.Body>
+      </Card.Body>{" "}
+      <Card.Footer>
+        <p className="text-black">
+          Already an existing user?{" "}
+          <Link to="/login">
+            <em className="text-blue-600">Login</em>
+          </Link>
+        </p>
+      </Card.Footer>
     </React.Fragment>
   );
 };
