@@ -1,11 +1,11 @@
 import React, { FormEvent, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 import { Card } from "components/Card";
 import Input from "components/Input";
 import ActionButton from "components/ActionButton";
 import { useAuth } from "context/AuthContext";
-import { Link } from "react-router-dom";
 
 const Signup = () => {
   const { signup } = useAuth();

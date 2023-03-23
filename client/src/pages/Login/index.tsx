@@ -1,9 +1,9 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 import { Card } from "components/Card";
-import ActionButton from "@/components/ActionButton";
-import Input from "@/components/Input";
-import { Link } from "react-router-dom";
+import ActionButton from "components/ActionButton";
+import Input from "components/Input";
 
 const Login = () => {
   const userNameRef = useRef<HTMLInputElement>(null);
