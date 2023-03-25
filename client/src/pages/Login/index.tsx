@@ -26,9 +26,6 @@ function Login() {
     }
     setLoading(true);
     login.mutate({ id: userName, password });
-
-    // add login logic here
-    setTimeout(() => setLoading(false), 4000); // to be removed once login integration is done
   }
 
   return (
@@ -51,7 +48,7 @@ function Login() {
           <label htmlFor="password" className="block text-gray-700 font-bold">
             Password
           </label>
-          <Input type="password" id="password" ref={passwordRef} />
+          <Input type="password" id="password" required ref={passwordRef} />
 
           <ActionButton loading={loading} label="Login" type="submit" />
         </form>

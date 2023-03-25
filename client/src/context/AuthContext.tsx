@@ -40,7 +40,7 @@ const LoginMethod = (navigation: (a: string) => void) =>
     },
     onSuccess: () => {
       toast.success('Login successful...!', {
-        duration: 2000,
+        duration: 3000,
       });
       setTimeout(() => {
         navigation('/');
@@ -49,7 +49,7 @@ const LoginMethod = (navigation: (a: string) => void) =>
 
     onError: () => {
       toast.error('Please Provide Valid login credentials!', {
-        duration: 2000,
+        duration: 3000,
       });
     },
   });
