@@ -37,13 +37,15 @@ const SignupMethod = (navigation: (a: string) => void) =>
 
 const LoginMethod = ({ navigation, setToken, setUser }: LoginMethodType) =>
   useMutation({
-    mutationFn: (loginUser: LoginCredentials) => {
-      return axios
-        .post(`${import.meta.env.VITE_SERVER_URL}/login`, {
+    mutationFn: async (loginUser: LoginCredentials) => {
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER_URL}/login`,
+        {
           id: loginUser.id,
           password: loginUser.password,
-        })
-        .then((response) => response.data as LoginResponseType);
+        }
+      );
+      return response.data as LoginResponseType;
     },
     onSuccess: (data) => {
       // data comes from post /login response above
