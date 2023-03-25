@@ -5,7 +5,6 @@ import { CardProps } from './types';
  * @description A wrapper card component for our application
  * Divides components into three section
  * @param {ReactDOM} {children}
- * @returns {any}
  */
 export function Card({ children }: CardProps) {
   return (
