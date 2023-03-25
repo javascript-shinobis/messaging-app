@@ -1,6 +1,6 @@
 import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
-import { ReactNode } from 'react';
+import { ReactNode, Dispatch, SetStateAction } from 'react';
 import { DefaultGenerics, OwnUserResponse, StreamChat } from 'stream-chat';
 
 export type AuthContext = {
@@ -27,4 +27,10 @@ export type LoginCredentials = {
 export type LoginResponseType = {
   token: string;
   user: OwnUserResponse<DefaultGenerics>;
+};
+
+export type LoginMethodType = {
+  navigation: (a: string) => void;
+  setToken: Dispatch<SetStateAction<string | undefined>>;
+  setUser: Dispatch<SetStateAction<User | undefined>>;
 };
