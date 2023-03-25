@@ -23,7 +23,8 @@
       "utils/*": ["utils/*"],
       "components/*": ["src/components/*"],
       "context/*": ["src/context/*"],
-      "public/*": ["public/*"]
+      "public/*": ["public/*"],
+      "hooks/*": ["src/hooks/*"]
     }
   },
   "include": ["src"],
