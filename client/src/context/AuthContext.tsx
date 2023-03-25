@@ -4,7 +4,12 @@ import { createContext, useMemo, useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthContext, AuthProviderProps, User } from './types';
+import {
+  AuthContext,
+  AuthProviderProps,
+  User,
+  LoginCredentials,
+} from './types';
 
 const Context = createContext<AuthContext | null>(null);
 const SignupMethod = (navigation: (a: string) => void) =>
@@ -27,18 +32,25 @@ const SignupMethod = (navigation: (a: string) => void) =>
 
 const LoginMethod = (navigation: (a: string) => void) =>
   useMutation({
-    mutationFn: (loginUser: string) => {
+    mutationFn: (loginUser: LoginCredentials) => {
       return axios.post(`${import.meta.env.VITE_SERVER_URL}/login`, {
-        id: loginUser,
+        id: loginUser.id,
+        password: loginUser.password,
       });
     },
     onSuccess: () => {
       toast.success('Login successful...!', {
-        duration: 2000,
+        duration: 3000,
       });
       setTimeout(() => {
         navigation('/');
       }, 1000);
+    },
+
+    onError: () => {
+      toast.error('Please Provide Valid login credentials!', {
+        duration: 3000,
+      });
     },
   });
 

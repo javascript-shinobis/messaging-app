@@ -10,6 +10,7 @@ import { useAuth } from 'context/AuthContext';
 
 function Login() {
   const userNameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false); // to be removed once login BE integration is done
   const { login } = useAuth();
 
@@ -18,15 +19,13 @@ function Login() {
     if (login.isLoading) return;
 
     const userName = userNameRef.current?.value;
-    if (!userName || userName === ' ') {
+    const password = passwordRef.current?.value;
+    if (!userName || userName === ' ' || !password || password === ' ') {
       toast.error('Please input a correct login username!');
       return;
     }
     setLoading(true);
-    login.mutate(userName);
-
-    // add login logic here
-    setTimeout(() => setLoading(false), 4000); // to be removed once login integration is done
+    login.mutate({ id: userName, password });
   }
 
   return (
@@ -46,6 +45,10 @@ function Login() {
             Username
           </label>
           <Input type="text" id="username" required ref={userNameRef} />
+          <label htmlFor="password" className="block text-gray-700 font-bold">
+            Password
+          </label>
+          <Input type="password" id="password" required ref={passwordRef} />
 
           <ActionButton loading={loading} label="Login" type="submit" />
         </form>

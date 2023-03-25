@@ -13,6 +13,7 @@ function Signup() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -24,13 +25,21 @@ function Signup() {
     const userName = usernameRef.current?.value;
     const name = nameRef.current?.value;
     const imageUrl = imageRef.current?.value;
+    const password = passwordRef.current?.value;
 
-    if (!userName || userName === ' ' || !name || name === ' ') {
+    if (
+      !userName ||
+      userName === ' ' ||
+      !name ||
+      name === ' ' ||
+      !password ||
+      password === ' '
+    ) {
       toast.error('Please input a correct signup credentials!');
       return;
     }
 
-    signup.mutate({ id: userName, name, image: imageUrl });
+    signup.mutate({ id: userName, name, image: imageUrl, password });
   };
 
   return (
@@ -57,6 +66,10 @@ function Signup() {
             Image URL
           </label>
           <Input type="url" id="image" pattern="\S*" ref={imageRef} />
+          <label htmlFor="password" className="block text-gray-700 font-bold">
+            Password
+          </label>
+          <Input type="password" id="password" required ref={passwordRef} />
           <ActionButton
             label="Sign up"
             type="submit"
