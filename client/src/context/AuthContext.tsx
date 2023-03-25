@@ -1,14 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import isEmpty from 'lodash/isEmpty';
-import {
-  Dispatch,
-  SetStateAction,
-  useState,
-  createContext,
-  useMemo,
-  useContext,
-  useEffect,
-} from 'react';
+import { useState, createContext, useMemo, useContext, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -21,6 +13,7 @@ import {
   User,
   LoginCredentials,
   LoginResponseType,
+  LoginMethodType,
 } from './types';
 
 const Context = createContext<AuthContext | null>(null);
@@ -42,15 +35,7 @@ const SignupMethod = (navigation: (a: string) => void) =>
     },
   });
 
-const LoginMethod = ({
-  navigation,
-  setToken,
-  setUser,
-}: {
-  navigation: (a: string) => void;
-  setToken: Dispatch<SetStateAction<string | undefined>>;
-  setUser: Dispatch<SetStateAction<User | undefined>>;
-}) =>
+const LoginMethod = ({ navigation, setToken, setUser }: LoginMethodType) =>
   useMutation({
     mutationFn: (loginUser: LoginCredentials) => {
       return axios
