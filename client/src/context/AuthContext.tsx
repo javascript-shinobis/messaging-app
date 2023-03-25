@@ -127,8 +127,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
   return (
     <Context.Provider
       value={useMemo(
-        () => ({ signup, isSuccess, isValidUser, login, token, user }),
-        [signup, isSuccess, isValidUser, login, token, user]
+        () => ({
+          signup,
+          isSuccess,
+          isValidUser,
+          login,
+          token,
+          user,
+          streamChat,
+        }),
+        [signup, isSuccess, isValidUser, login, token, user, streamChat]
       )}
     >
       {children}

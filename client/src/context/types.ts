@@ -1,13 +1,16 @@
 import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { ReactNode } from 'react';
-import { DefaultGenerics, OwnUserResponse } from 'stream-chat';
+import { DefaultGenerics, OwnUserResponse, StreamChat } from 'stream-chat';
 
 export type AuthContext = {
   signup: UseMutationResult<AxiosResponse, unknown, User>;
   isSuccess: boolean;
   isValidUser: boolean;
   login: UseMutationResult<LoginResponseType, unknown, LoginCredentials>;
+  token?: string | undefined;
+  user?: User;
+  streamChat?: StreamChat;
 };
 
 export type AuthProviderProps = {
