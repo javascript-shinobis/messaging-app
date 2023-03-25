@@ -19,7 +19,9 @@ import {
   AuthProviderProps,
   User,
   LoginCredentials,
+  LoginResponseType,
 } from './types';
+import { StreamChat } from 'stream-chat';
 
 const Context = createContext<AuthContext | null>(null);
 const SignupMethod = (navigation: (a: string) => void) =>
@@ -46,8 +48,8 @@ const LoginMethod = ({
   setUser,
 }: {
   navigation: (a: string) => void;
-  setToken: Dispatch<SetStateAction<string>>;
-  setUser: Dispatch<SetStateAction<User>>;
+  setToken: Dispatch<SetStateAction<string | undefined>>;
+  setUser: Dispatch<SetStateAction<User | undefined>>;
 }) =>
   useMutation({
     mutationFn: (loginUser: LoginCredentials) => {
@@ -56,7 +58,7 @@ const LoginMethod = ({
           id: loginUser.id,
           password: loginUser.password,
         })
-        .then((response) => response.data as { token: string; user: User });
+        .then((response) => response.data as LoginResponseType);
     },
     onSuccess: (data) => {
       // data comes from post /login response above
@@ -85,8 +87,9 @@ const LoginMethod = ({
 export const useAuth = () => useContext(Context) as AuthContext;
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState({});
-  const [token, setToken] = useState('');
+  const [user, setUser] = useState<User>();
+  const [token, setToken] = useState<string>();
+  const [streamChat, setStreamChat] = useState<StreamChat>();
   const navigate = useNavigate();
   const signup = SignupMethod(navigate);
   const login = LoginMethod({ navigation: navigate, setToken, setUser });
@@ -97,8 +100,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // login the user to stream
     if (!token || isEmpty(user)) return;
 
-    // console.log
-    navigate('/');
+    // create stream chat instance
+    const chat = new StreamChat(import.meta.env.VITE_STREAM_API_KEY!);
+
+    let isInterrupted = false;
+    // connect the user to stream chat server
+    const connectPromise = chat.connectUser(user as User, token).then(() => {
+      if (isInterrupted) return;
+    });
   }, [token, user]);
 
   return (
