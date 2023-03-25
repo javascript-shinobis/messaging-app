@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import isEmpty from 'lodash/isEmpty';
 import {
   Dispatch,
   SetStateAction,
@@ -5,6 +7,7 @@ import {
   createContext,
   useMemo,
   useContext,
+  useEffect,
 } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -89,6 +92,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const login = LoginMethod({ navigation: navigate, setToken, setUser });
   const { isSuccess } = signup;
   const isValidUser = login.isSuccess;
+
+  useEffect(() => {
+    // login the user to stream
+    if (!token || isEmpty(user)) return;
+
+    // console.log
+    navigate('/');
+  }, [token, user]);
 
   return (
     <Context.Provider
