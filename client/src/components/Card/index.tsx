@@ -31,7 +31,7 @@ Card.Body = function CardBody({ children }: CardProps) {
 };
 Card.Footer = function CardFooter({ children }: CardProps) {
   return (
-    <div className="mt-2 p-1  bg-white justify-center  rounded-lg flex gap-1 w-96 mx-auto">
+    <div className="mt-2 p-1  bg-white justify-center  rounded-lg flex gap-1 w-96 mx-auto shadow">
       {children}
     </div>
   );
