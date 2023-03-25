@@ -4,7 +4,7 @@ import { ReactNode, Dispatch, SetStateAction } from 'react';
 import { DefaultGenerics, OwnUserResponse, StreamChat } from 'stream-chat';
 
 export type AuthContext = {
-  signup: UseMutationResult<AxiosResponse, unknown, User>;
+  signup: UseMutationResult<AxiosResponse, unknown, SignupUserType>;
   isSuccess: boolean;
   isValidUser: boolean;
   login: UseMutationResult<LoginResponseType, unknown, LoginCredentials>;
