@@ -34,3 +34,10 @@ export type LoginMethodType = {
   setToken: Dispatch<SetStateAction<string | undefined>>;
   setUser: Dispatch<SetStateAction<User | undefined>>;
 };
+
+export type SignupUserType = {
+  id: string;
+  name: string;
+  password: string;
+  imageUrl: string;
+};
