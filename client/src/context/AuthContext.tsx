@@ -110,16 +110,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setStreamChat(chat);
     });
 
-    // cleanup when we re-invoke useEffect
+    // sanity check, in case user's token and chat userId is same as current user id, don't re-login the user
+    if (chat.tokenManager.token === token && chat.userID === user.id) return;
 
     // eslint-disable-next-line  consistent-return
     return () => {
       // if something happens and it is re-called, e.g login again with new user, disconnect the stream chat client
       isInterrupted = true;
       setStreamChat(undefined);
+
       // disconnect user
       connectPromise.then(() => chat.disconnectUser());
-      // return undefined;
     };
   }, [token, user]);
 
