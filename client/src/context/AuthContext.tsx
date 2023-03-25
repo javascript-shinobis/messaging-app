@@ -74,6 +74,8 @@ const LoginMethod = ({ navigation, setToken, setUser }: LoginMethodType) =>
   });
 
 export const useAuth = () => useContext(Context) as AuthContext;
+export const usePostLoginAuth = () =>
+  useContext(Context) as AuthContext & Required<Pick<AuthContext, 'user'>>;
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
