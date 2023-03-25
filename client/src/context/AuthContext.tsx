@@ -14,6 +14,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
+import { StreamChat } from 'stream-chat';
 import {
   AuthContext,
   AuthProviderProps,
@@ -21,7 +22,6 @@ import {
   LoginCredentials,
   LoginResponseType,
 } from './types';
-import { StreamChat } from 'stream-chat';
 
 const Context = createContext<AuthContext | null>(null);
 const SignupMethod = (navigation: (a: string) => void) =>
@@ -103,11 +103,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // create stream chat instance
     const chat = new StreamChat(import.meta.env.VITE_STREAM_API_KEY!);
 
-    let isInterrupted = false;
     // connect the user to stream chat server
+    let isInterrupted = false;
     const connectPromise = chat.connectUser(user as User, token).then(() => {
       if (isInterrupted) return;
+      setStreamChat(chat);
     });
+
+    // cleanup when we re-invoke useEffect
+
+    // eslint-disable-next-line  consistent-return
+    return () => {
+      // if something happens and it is re-called, e.g login again with new user, disconnect the stream chat client
+      isInterrupted = true;
+      setStreamChat(undefined);
+      // disconnect user
+      connectPromise.then(() => chat.disconnectUser());
+      // return undefined;
+    };
   }, [token, user]);
 
   return (
