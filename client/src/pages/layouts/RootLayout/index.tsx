@@ -7,9 +7,5 @@ export default function Rootlayout() {
 
   if (!user) return <Navigate to="/login" />;
 
-  return (
-    <Card>
-      <Outlet />
-    </Card>
-  );
+  return <Outlet />;
 }
