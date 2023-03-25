@@ -1,6 +1,13 @@
+import {
+  Dispatch,
+  SetStateAction,
+  useState,
+  createContext,
+  useMemo,
+  useContext,
+} from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { createContext, useMemo, useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,18 +37,36 @@ const SignupMethod = (navigation: (a: string) => void) =>
     },
   });
 
-const LoginMethod = (navigation: (a: string) => void) =>
+const LoginMethod = ({
+  navigation,
+  setToken,
+  setUser,
+}: {
+  navigation: (a: string) => void;
+  setToken: Dispatch<SetStateAction<string>>;
+  setUser: Dispatch<SetStateAction<User>>;
+}) =>
   useMutation({
     mutationFn: (loginUser: LoginCredentials) => {
-      return axios.post(`${import.meta.env.VITE_SERVER_URL}/login`, {
-        id: loginUser.id,
-        password: loginUser.password,
-      });
+      return axios
+        .post(`${import.meta.env.VITE_SERVER_URL}/login`, {
+          id: loginUser.id,
+          password: loginUser.password,
+        })
+        .then((response) => response.data as { token: string; user: User });
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      // data comes from post /login response above
+
       toast.success('Login successful...!', {
         duration: 3000,
       });
+
+      // set user creds in state
+      setToken(data.token);
+      setUser(data.user);
+
+      // navigate to / route
       setTimeout(() => {
         navigation('/');
       }, 1000);
@@ -57,17 +82,19 @@ const LoginMethod = (navigation: (a: string) => void) =>
 export const useAuth = () => useContext(Context) as AuthContext;
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState({});
+  const [token, setToken] = useState('');
   const navigate = useNavigate();
   const signup = SignupMethod(navigate);
-  const login = LoginMethod(navigate);
+  const login = LoginMethod({ navigation: navigate, setToken, setUser });
   const { isSuccess } = signup;
   const isValidUser = login.isSuccess;
 
   return (
     <Context.Provider
       value={useMemo(
-        () => ({ signup, isSuccess, isValidUser, login }),
-        [signup, isSuccess, isValidUser, login]
+        () => ({ signup, isSuccess, isValidUser, login, token, user }),
+        [signup, isSuccess, isValidUser, login, token, user]
       )}
     >
       {children}

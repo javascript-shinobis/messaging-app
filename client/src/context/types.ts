@@ -6,7 +6,11 @@ export type AuthContext = {
   signup: UseMutationResult<AxiosResponse, unknown, User>;
   isSuccess: boolean;
   isValidUser: boolean;
-  login: UseMutationResult<AxiosResponse, unknown, LoginCredentials>;
+  login: UseMutationResult<
+    { token: string; user: User },
+    unknown,
+    LoginCredentials
+  >;
 };
 
 export type AuthProviderProps = {
