@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef } from 'react';
+import { FormEvent, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 

@@ -14,12 +14,14 @@ import {
   LoginCredentials,
   LoginResponseType,
   LoginMethodType,
+  SignupUserType,
 } from './types';
 
 const Context = createContext<AuthContext | null>(null);
+
 const SignupMethod = (navigation: (a: string) => void) =>
   useMutation({
-    mutationFn: (user: User) => {
+    mutationFn: (user: SignupUserType) => {
       return axios.post(`${import.meta.env.VITE_SERVER_URL}/signup`, user);
     },
     onSuccess: () => {
@@ -72,6 +74,8 @@ const LoginMethod = ({ navigation, setToken, setUser }: LoginMethodType) =>
   });
 
 export const useAuth = () => useContext(Context) as AuthContext;
+export const usePostLoginAuth = () =>
+  useContext(Context) as AuthContext & Required<Pick<AuthContext, 'user'>>;
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
