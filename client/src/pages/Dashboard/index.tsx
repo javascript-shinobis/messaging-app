@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import isEmpty from 'lodash/isEmpty';
-import { usePostLoginAuth } from 'context/AuthContext';
 import {
   Channel,
   ChannelHeader,
@@ -13,13 +12,20 @@ import {
 } from 'stream-chat-react';
 import 'stream-chat-react/dist/css/index.css';
 
+import { usePostLoginAuth } from 'context/AuthContext';
+import Channels from './Channels';
+
 export default function Dashboard() {
   const { user, streamChat } = usePostLoginAuth();
   if (!streamChat || isEmpty(streamChat)) return <LoadingIndicator />;
 
   return (
     <Chat client={streamChat}>
-      <ChannelList filters={{ members: { $in: [user.id] } }} />
+      <ChannelList
+        List={Channels}
+        sendChannelsToList
+        filters={{ members: { $in: [user.id] } }}
+      />
       <Channel>
         <Window>
           <ChannelHeader />
