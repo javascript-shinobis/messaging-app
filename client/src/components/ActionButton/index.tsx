@@ -1,6 +1,6 @@
 import { ActionButtonProps } from './types';
 
-function ActionButton({
+export default function ActionButton({
   label,
   type,
   loading,
@@ -21,5 +21,3 @@ function ActionButton({
     </button>
   );
 }
-
-export default ActionButton;

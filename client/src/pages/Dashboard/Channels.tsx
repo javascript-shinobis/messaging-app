@@ -1,6 +1,7 @@
-import ActionButton from 'components/ActionButton/index';
 import { useNavigate } from 'react-router-dom';
 import { ChannelListMessengerProps, useChatContext } from 'stream-chat-react';
+
+import ActionButton from 'components/ActionButton/index';
 
 export default function Channels({
   loadedChannels,
