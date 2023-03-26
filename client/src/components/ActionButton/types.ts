@@ -5,7 +5,7 @@ export interface ActionButtonProps {
   label: string;
   labelColor?: string;
   loading?: boolean;
-  type: 'submit' | 'reset' | 'button';
+  type: 'submit' | 'reset' | 'button' | undefined;
   disabled?: boolean;
   onClick?: (event: MouseEvent) => void;
 }
