@@ -5,8 +5,9 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-
 import { StreamChat } from 'stream-chat';
+
+import useLocalStorage from 'hooks/useLocalStorage';
 import {
   AuthContext,
   AuthProviderProps,
@@ -78,8 +79,8 @@ export const usePostLoginAuth = () =>
   useContext(Context) as AuthContext & Required<Pick<AuthContext, 'user'>>;
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User>();
-  const [token, setToken] = useState<string>();
+  const [user, setUser] = useLocalStorage<User>('user');
+  const [token, setToken] = useLocalStorage<string>('token');
   const [streamChat, setStreamChat] = useState<StreamChat>();
   const navigate = useNavigate();
   const signup = SignupMethod(navigate);
