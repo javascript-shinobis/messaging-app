@@ -1,4 +1,4 @@
-# Facebook messenger clone
+# Group Chat Application
 
 ### 📇 <u>Description</u>:-
 
