@@ -1,12 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/display-name */
 import React, {
   DetailedHTMLProps,
   forwardRef,
   InputHTMLAttributes,
-} from "react";
+} from 'react';
 
 const Input = forwardRef<
   HTMLInputElement,
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...rest }, ref) => {
   return (
     <input
