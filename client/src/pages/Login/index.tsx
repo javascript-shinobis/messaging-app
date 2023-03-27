@@ -11,7 +11,6 @@ import { useAuth } from 'context/AuthContext';
 function Login() {
   const userNameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const [loading, setLoading] = useState(false); // to be removed once login BE integration is done
   const { login } = useAuth();
 
   function onSubmit(e: FormEvent) {
@@ -50,7 +49,7 @@ function Login() {
           </label>
           <Input type="password" id="password" required ref={passwordRef} />
 
-          <ActionButton loading={loading} label="Login" type="submit" />
+          <ActionButton loading={login.isLoading} label="Login" type="submit" />
         </form>
       </Card.Body>
       <Card.Footer>
