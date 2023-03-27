@@ -72,7 +72,7 @@ function NewChannel() {
     enabled: streamChat != null,
   });
   return (
-    <>
+    <Card>
       <Toaster />
 
       <Card.Header>
@@ -108,7 +108,11 @@ function NewChannel() {
             })}
           />
 
-          <ActionButton label="Create" type="submit" />
+          <ActionButton
+            label="Create"
+            type="submit"
+            loading={createChannel.isLoading}
+          />
         </form>
       </Card.Body>
       <Card.Footer>
@@ -118,7 +122,7 @@ function NewChannel() {
           </Link>
         </p>
       </Card.Footer>
-    </>
+    </Card>
   );
 }
 
