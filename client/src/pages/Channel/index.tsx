@@ -104,7 +104,7 @@ function NewChannel() {
             id="members"
             required
             isMulti
-            classNames={{ container: () => 'w-full' }}
+            classNames={{ container: () => 'w-full text-black' }}
             options={users.data?.users.map((userr) => {
               return { value: userr.id, label: userr.name || userr.id };
             })}
