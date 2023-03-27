@@ -1,5 +1,5 @@
 // eslint-disable-file jsx-a11y/label-has-associated-control
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -23,7 +23,6 @@ function Login() {
       toast.error('Please input a correct login username!');
       return;
     }
-    setLoading(true);
     login.mutate({ id: userName, password });
   }
 

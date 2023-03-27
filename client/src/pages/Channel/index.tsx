@@ -96,7 +96,9 @@ function NewChannel() {
           </label>
           <Input type="url" id="image" ref={imageRef} />
 
-          <label htmlFor="members">Members</label>
+          <label htmlFor="members" className="block text-gray-700 font-bold">
+            Members
+          </label>
           <Select
             ref={memberIdsRef}
             id="members"
