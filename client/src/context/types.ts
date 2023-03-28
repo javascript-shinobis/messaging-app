@@ -25,10 +25,6 @@ export type LoginCredentials = {
   password: string;
 };
 
-export type LogoutCredentials = {
-  token: string | undefined;
-};
-
 export type LoginResponseType = {
   token: string;
   user: OwnUserResponse<DefaultGenerics>;
