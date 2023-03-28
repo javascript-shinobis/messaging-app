@@ -4,13 +4,13 @@ import { toast, Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import Select, { SelectInstance } from 'react-select';
 
-import { usePostLoginAuth } from 'context/AuthContext';
+import { useAuth } from 'context/AuthContext';
 import Input from 'components/Input';
 import { Card } from 'components/Card';
 import ActionButton from 'components/ActionButton';
 
 function NewChannel() {
-  const { streamChat, user } = usePostLoginAuth();
+  const { streamChat, user } = useAuth();
   const navigate = useNavigate();
   const createChannel = useMutation({
     mutationFn: ({
@@ -23,6 +23,7 @@ function NewChannel() {
       imageUrl?: string;
     }) => {
       if (streamChat == null) throw Error('Not connected');
+      if (!user) throw Error('User Not found');
 
       return streamChat
         .channel('messaging', crypto.randomUUID(), {
@@ -67,7 +68,7 @@ function NewChannel() {
   const users = useQuery({
     queryKey: ['stream', 'users'],
     queryFn: () =>
-      streamChat!.queryUsers({ id: { $ne: user.id } }, { name: 1 }),
+      streamChat!.queryUsers({ id: { $ne: user!.id } }, { name: 1 }),
     enabled: streamChat != null,
   });
   return (
@@ -104,9 +105,8 @@ function NewChannel() {
             required
             isMulti
             classNames={{ container: () => 'w-full text-black' }}
-            // eslint-disable-next-line @typescript-eslint/no-shadow
-            options={users.data?.users.map((user) => {
-              return { value: user.id, label: user.name || user.id };
+            options={users.data?.users.map((userr) => {
+              return { value: userr.id, label: userr.name || userr.id };
             })}
           />
 
