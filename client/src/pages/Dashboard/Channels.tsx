@@ -20,19 +20,19 @@ export default function Channels({
         label="New Conversation"
         onClick={() => navigate('/channel/new')}
       />
-      <hr className="border-gray-500 mt-auto" />
+      <hr className="border-gray-500" />
       {loadedChannels != null && loadedChannels?.length > 0
         ? loadedChannels.map((channel) => {
             const isActive = channel === activeChannel;
             const extraClasses = isActive
-              ? 'bg-blue-500 text-white'
-              : 'hover:bg-blue-100 bg-gray-100';
+              ? 'bg-blue-500 text-white mb-auto'
+              : 'hover:bg-blue-100 bg-gray-100 mb-auto';
             return (
               <button
                 onClick={() => setActiveChannel(channel)}
                 disabled={isActive}
                 type="button"
-                className={`p-4 rounded-lg flex gap-3 items-center ${extraClasses}`}
+                className={`p-4 rounded-lg flex gap-3 items-center mb-auto ${extraClasses}`}
                 key={channel.id}
               >
                 {channel.data?.image && (
@@ -49,13 +49,15 @@ export default function Channels({
             );
           })
         : 'No Conversation'}
-      <ActionButton
-        type="button"
-        label="Logout"
-        onClick={() => logout.mutate()}
-        disabled={logout.isLoading}
-        loading={logout.isLoading}
-      />
+      <div className="mt-auto">
+        <ActionButton
+          type="button"
+          label="Logout"
+          onClick={() => logout.mutate()}
+          disabled={logout.isLoading}
+          loading={logout.isLoading}
+        />
+      </div>
     </div>
   );
 }
