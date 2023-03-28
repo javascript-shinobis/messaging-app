@@ -20,7 +20,7 @@ export default function Channels({
         label="New Conversation"
         onClick={() => navigate('/channel/new')}
       />
-      <hr className="border-gray-500 mt-auto" />
+      <hr className="border-gray-500" />
       {loadedChannels != null && loadedChannels?.length > 0
         ? loadedChannels.map((channel) => {
             const isActive = channel === activeChannel;
@@ -49,13 +49,15 @@ export default function Channels({
             );
           })
         : 'No Conversation'}
-      <ActionButton
-        type="button"
-        label="Logout"
-        onClick={() => logout.mutate()}
-        disabled={logout.isLoading}
-        loading={logout.isLoading}
-      />
+      <div className="mt-auto">
+        <ActionButton
+          type="button"
+          label="Logout"
+          onClick={() => logout.mutate()}
+          disabled={logout.isLoading}
+          loading={logout.isLoading}
+        />
+      </div>
     </div>
   );
 }
