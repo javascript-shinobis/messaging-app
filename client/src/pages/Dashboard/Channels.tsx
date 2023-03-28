@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChannelListMessengerProps, useChatContext } from 'stream-chat-react';
 
 import ActionButton from 'components/ActionButton/index';
+import { usePostLoginAuth } from 'context/AuthContext';
 
 export default function Channels({
   loadedChannels,
@@ -10,6 +11,7 @@ export default function Channels({
   // channel: The currently active channel, which populates the Channel component.
   const { setActiveChannel, channel: activeChannel } = useChatContext();
   const navigate = useNavigate();
+  const { logout } = usePostLoginAuth();
 
   return (
     <div className="w-60 flex flex-col gap-4 m-3 h-full">
@@ -18,7 +20,7 @@ export default function Channels({
         label="New Conversation"
         onClick={() => navigate('/channel/new')}
       />
-      <hr className="border-gray-500" />
+      <hr className="border-gray-500 mt-auto" />
       {loadedChannels != null && loadedChannels?.length > 0
         ? loadedChannels.map((channel) => {
             const isActive = channel === activeChannel;
@@ -47,6 +49,13 @@ export default function Channels({
             );
           })
         : 'No Conversation'}
+      <ActionButton
+        type="button"
+        label="Logout"
+        onClick={() => logout.mutate()}
+        disabled={logout.isLoading}
+        loading={logout.isLoading}
+      />
     </div>
   );
 }

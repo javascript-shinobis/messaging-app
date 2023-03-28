@@ -8,6 +8,7 @@ export type AuthContext = {
   isSuccess: boolean;
   isValidUser: boolean;
   login: UseMutationResult<LoginResponseType, unknown, LoginCredentials>;
+  logout: UseMutationResult<AxiosResponse, unknown, void>;
   token?: string | undefined;
   user?: User;
   streamChat?: StreamChat;
@@ -24,6 +25,10 @@ export type LoginCredentials = {
   password: string;
 };
 
+export type LogoutCredentials = {
+  token: string | undefined;
+};
+
 export type LoginResponseType = {
   token: string;
   user: OwnUserResponse<DefaultGenerics>;
@@ -33,6 +38,16 @@ export type LoginMethodType = {
   navigation: (a: string) => void;
   setToken: Dispatch<SetStateAction<string | undefined>>;
   setUser: Dispatch<SetStateAction<User | undefined>>;
+};
+
+export type LogoutMethodType = {
+  navigation: (a: string) => void;
+  setToken: Dispatch<SetStateAction<string | undefined>>;
+  setUser: Dispatch<SetStateAction<User | undefined>>;
+  setStreamChat: Dispatch<
+    SetStateAction<StreamChat<DefaultGenerics> | undefined>
+  >;
+  token: string | undefined;
 };
 
 export type SignupUserType = {
