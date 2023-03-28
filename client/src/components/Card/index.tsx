@@ -24,14 +24,14 @@ Card.Header = function CardHeader({ children }: CardProps) {
 
 Card.Body = function CardBody({ children }: CardProps) {
   return (
-    <div className="shadow bg-white p-6 rounded-lg w-96 mx-auto">
+    <div className=" shadow-lg bg-white p-6 rounded-lg w-96 mx-auto">
       {children}
     </div>
   );
 };
 Card.Footer = function CardFooter({ children }: CardProps) {
   return (
-    <div className="mt-2 p-1  bg-white justify-center  rounded-lg flex gap-1 w-96 mx-auto shadow">
+    <div className="mt-2 p-1  bg-white justify-center  rounded-lg flex gap-1 w-96 mx-auto shadow-lg">
       {children}
     </div>
   );

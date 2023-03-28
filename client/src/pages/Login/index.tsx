@@ -1,5 +1,5 @@
 // eslint-disable-file jsx-a11y/label-has-associated-control
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -11,7 +11,6 @@ import { useAuth } from 'context/AuthContext';
 function Login() {
   const userNameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const [loading, setLoading] = useState(false); // to be removed once login BE integration is done
   const { login } = useAuth();
 
   function onSubmit(e: FormEvent) {
@@ -24,7 +23,6 @@ function Login() {
       toast.error('Please input a correct login username!');
       return;
     }
-    setLoading(true);
     login.mutate({ id: userName, password });
   }
 
@@ -50,7 +48,7 @@ function Login() {
           </label>
           <Input type="password" id="password" required ref={passwordRef} />
 
-          <ActionButton loading={loading} label="Login" type="submit" />
+          <ActionButton loading={login.isLoading} label="Login" type="submit" />
         </form>
       </Card.Body>
       <Card.Footer>

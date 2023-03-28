@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import ContextProvider from './context/Provider';
-import Dashboard from './pages/Dashboard';
-import Authlayout from './pages/layouts/AuthLayout';
-import Rootlayout from './pages/layouts/RootLayout';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import NewChannel from 'pages/Channel/index';
+import ContextProvider from 'context/Provider';
+import Dashboard from 'pages/Dashboard';
+import Authlayout from 'pages/layouts/AuthLayout';
+import Rootlayout from 'pages/layouts/RootLayout';
+import Login from 'pages/Login';
+import Signup from 'pages/Signup';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,13 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Rootlayout />,
-        children: [{ index: true, element: <Dashboard /> }],
+        children: [
+          { index: true, element: <Dashboard /> },
+          {
+            path: '/channel',
+            children: [{ path: 'new', element: <NewChannel /> }],
+          },
+        ],
       },
       {
         element: <Authlayout />,
