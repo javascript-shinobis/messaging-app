@@ -15,6 +15,7 @@ import {
   LoginCredentials,
   LoginResponseType,
   LoginMethodType,
+  LogoutMethodType,
   SignupUserType,
 } from './types';
 
@@ -74,6 +75,36 @@ const LoginMethod = ({ navigation, setToken, setUser }: LoginMethodType) =>
     },
   });
 
+const LogoutMethod = ({
+  navigation,
+  setToken,
+  setUser,
+  setStreamChat,
+  token,
+}: LogoutMethodType) =>
+  useMutation({
+    mutationFn: () => {
+      return axios.post(`${import.meta.env.VITE_SERVER_URL}/logout`, { token });
+    },
+    onSuccess() {
+      setUser(undefined);
+      setToken(undefined);
+      setStreamChat(undefined);
+
+      toast.success('Logged out', {
+        duration: 3000,
+      });
+      setTimeout(() => {
+        navigation('/login');
+      }, 2000);
+    },
+    onError() {
+      toast.error('Something went wrong', {
+        duration: 3000,
+      });
+    },
+  });
+
 export const useAuth = () => useContext(Context) as AuthContext;
 export const usePostLoginAuth = () =>
   useContext(Context) as AuthContext & Required<Pick<AuthContext, 'user'>>;
@@ -85,6 +116,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
   const signup = SignupMethod(navigate);
   const login = LoginMethod({ navigation: navigate, setToken, setUser });
+  const logout = LogoutMethod({
+    navigation: navigate,
+    setToken,
+    setUser,
+    setStreamChat,
+    token,
+  });
   const { isSuccess } = signup;
   const isValidUser = login.isSuccess;
 
@@ -124,11 +162,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
           isSuccess,
           isValidUser,
           login,
+          logout,
           token,
           user,
           streamChat,
         }),
-        [signup, isSuccess, isValidUser, login, token, user, streamChat]
+        [signup, isSuccess, isValidUser, login, token, user, streamChat, logout]
       )}
     >
       {children}
