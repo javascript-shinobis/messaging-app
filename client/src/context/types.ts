@@ -50,5 +50,5 @@ export type SignupUserType = {
   id: string;
   name: string;
   password: string;
-  imageUrl: string;
+  image: string | undefined;
 };
