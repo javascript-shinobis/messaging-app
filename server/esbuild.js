@@ -2,7 +2,7 @@
 const { build } = require('esbuild');
 
 build({
-  entryPoints: ['server/server.ts'],
+  entryPoints: ['server.ts'],
   outdir: 'build/',
   platform: 'node',
   target: 'node16',
