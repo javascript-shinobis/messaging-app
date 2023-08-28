@@ -1,6 +1,6 @@
 # Group Chat Application
 
-### 📇 <u>Description</u>:-
+### 📇 <u>Description</u> :-
 
 A realtime chat app using react. You can create groups, add your friends and chat with them.
 
