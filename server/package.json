@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Server for authentication in facebook messenger clone app",
   "main": "server.ts",
+  "type": "module",
   "scripts": {
     "dev": "nodemon server.ts",
     "start": "node server.ts",
