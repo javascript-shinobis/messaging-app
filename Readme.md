@@ -13,6 +13,7 @@ A realtime chat app using react. You can create groups, add your friends and cha
 - [Fastify](https://www.fastify.io/)
 - [Storybook](https://storybook.js.org/)
 - [React Router DOM](https://reactrouter.com/en/main)
+- [Cyclic](https://www.cyclic.sh/)
 
 ### 📝 <u> Scripts </u>:-
 
